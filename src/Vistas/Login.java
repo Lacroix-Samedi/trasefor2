@@ -143,7 +143,13 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAccederActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Esta seguro de querer salir de la aplicacion?", "Salir", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        
+        if(respuesta == 0){
+            System.exit(0);
+        }
+        
     }//GEN-LAST:event_btnSalirActionPerformed
 
    

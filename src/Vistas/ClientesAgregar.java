@@ -5,21 +5,13 @@
  */
 package Vistas;
 
-import Clases.Conexion;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author NICOLAS
  */
 public class ClientesAgregar extends javax.swing.JFrame {
-    
-    Conexion conn;
-    
-
-    
     public ClientesAgregar() {
         initComponents();
         this.setTitle("Agregar");
@@ -142,31 +134,6 @@ public class ClientesAgregar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        Conexion cc=new Conexion();
-        Connection cn=cc.conexion();
-        
-        
-        
-        try{
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO cliente(rut,razon_social,id_ciudad,comuna) VALUES(?,?,?,?)");
-            pst.setString(1,txt1.getText());
-            pst.setString(2,txt2.getText());
-            pst.setString(3,txt3.getText());
-            pst.setString(4,txt4.getText());
-            
-
-        
-        int a=pst.executeUpdate();
-        if(a>0){
-            JOptionPane.showMessageDialog(null,"Registro exitoso");
-             mostrardatos("");
-        }
-        else{
-             JOptionPane.showMessageDialog(null,"Error al agregar");
-        }
-        }catch(Exception e){
-        }        // TODO     
-        
         
     }//GEN-LAST:event_btnGuardarActionPerformed
 

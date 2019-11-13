@@ -9,38 +9,34 @@ import javax.swing.JOptionPane;
 
 
 public class Conexion{
-   
-   private static Connection conn;
-   private  static final  String  driver = "com.mysql.jbdc,Driver";
-   private  static final  String  user = "root";
-   private  static final  String  password = ""; //:D
-   private  static final  String  url = "jbdc:mysql://localhost:3306/trasefor";
-   
-   public Conexion(){
-       conn = null; 
-       try {
-           Class.forName(driver);
-           conn = DriverManager.getConnection(url, user, password);
-           if(conn != null){
-               System.out.println("Conexion establecida...");
-           }
-       }catch(ClassNotFoundException | SQLException e) {
-           System.out.println("Error al conectar" +e);
-       }
-   }
-   
-   public Connection getConnection(){
-       return conn;
-   }
-   public void desconectar(){
-       conn = null;
-       if(conn == null){
-           System.out.println("Conexion terminada...");
-       }
-   }
-
-    public Connection conexion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static String driver = "com.mysql.jdbc.Driver";
+    private static String datebase = "trasefor";
+    private static String hostname = "127.0.0.1";
+    private static String port = "3307";
+    private static String username = "root";
+    private static String password = "123456789";
+    private static String connectionURL;
+    
+    
+    public static Connection conn;
+    
+    public Conexion(){
+        this.connectionURL = "jdbc:mysql://";
+        this.connectionURL += hostname + ":" + port + "/" + datebase;
+        this.connectionURL += "autoReconect = true & useSSL = false";
     }
-
+    
+    public static Connection getConnection(){
+        try{
+            Class.forName(driver);
+            try{
+                conn = DriverManager.getConnection(connectionURL, username, password);
+            }catch(SQLException e){
+                JOptionPane.showConfirmDialog(null, "No se puede conectar" +e.getMessage());
+            }
+        } catch(ClassNotFoundException ex){
+            JOptionPane.showConfirmDialog(null, "La clase "+driver+" no existe en el sistema");
+        }
+        return conn;
+    }
 }
